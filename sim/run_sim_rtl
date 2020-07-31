@@ -1,0 +1,25 @@
+#!/bin/csh
+
+setenv TOP_DESIGN ./..
+# -- Set current directory for unit
+setenv CURR_DIR $PWD
+cd ../
+setenv UNIT_HOME $PWD
+cd $CURR_DIR
+
+rm -rf ./XRUN_rtl_libs/
+source $UNIT_HOME/tb/vipcat_env_xrun64.csh
+
+xrun \
++gui \
++libverbose \
++xmaccess+rwc\
+-64bit\
+-sv \
+-uvm \
+-smartorder \
+-LOGfile xrun_tb.log \
+-incdir ${TOP_DESIGN}/tb\
++xmtimescale+1ps/1ps \
+-xmlibdirname XRUN_rtl_libs \
+-f ../sim/aes128_files_rtl.lst 
